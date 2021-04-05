@@ -12,7 +12,7 @@ params = None
 def oil():
     url = 'https://ru.investing.com/economic-calendar/eia-crude-oil-inventories-75'
     r = requests.get(url, headers=HEADERS, params=params)
-    soup = BeautifulSoup(r.content, 'lxml')
+    soup = BeautifulSoup(r.content, 'html.parser')
 
     oil_prod = soup.find('div', id='releaseInfo').find_all('span')
     a = []
@@ -22,14 +22,12 @@ def oil():
     return f"Последний выпуск: {a[0]}\nФакт.: {a[1]}\nПрогноз: {a[2]}\nПред.: {a[3]}"
 
 
-# print(oil())
-
 
 # Уровень безработицы в США
 def unemployment():
     url = 'https://ru.investing.com/economic-calendar/unemployment-rate-300'
     r = requests.get(url, headers=HEADERS, params=params)
-    soup = BeautifulSoup(r.content, 'lxml')
+    soup = BeautifulSoup(r.content, 'html.parser')
 
     unpl = soup.find('div', id='releaseInfo').find_all('span')
     a = []
@@ -38,14 +36,12 @@ def unemployment():
     return f"Последний выпуск: {a[0]}\nФакт.: {a[1]}\nПрогноз: {a[2]}\nПред.: {a[3]}"
 
 
-# print(unemployment())
-
 
 # Решение по процентной ставке ФРС США
 def rate():
     url = 'https://ru.investing.com/economic-calendar/interest-rate-decision-168'
     r = requests.get(url, headers=HEADERS, params=params)
-    soup = BeautifulSoup(r.content, 'lxml')
+    soup = BeautifulSoup(r.content, 'html.parser')
 
     rate = soup.find('div', id='releaseInfo').find_all('span')
     a = []
@@ -54,13 +50,11 @@ def rate():
     return f"Последний выпуск: {a[0]}\nФакт.: {a[1]}\nПрогноз: {a[2]}\nПред.: {a[3]}"
 
 
-# print(rate())
-
 # ВВП США
 def GDP():
     url = 'https://ru.investing.com/economic-calendar/gdp-375'
     r = requests.get(url, headers=HEADERS, params=params)
-    soup = BeautifulSoup(r.content, 'lxml')
+    soup = BeautifulSoup(r.content, 'html.parser')
 
     gdp = soup.find('div', id='releaseInfo').find_all('span')
     a = []
@@ -69,14 +63,37 @@ def GDP():
     return f"Последний выпуск: {a[0]}\nФакт.: {a[1]}\nПрогноз: {a[2]}\nПред.: {a[3]}"
 
 
-# print(GDP())
+def retail_sales():
+    url = 'https://ru.investing.com/economic-calendar/retail-sales-256'
+    r = requests.get(url, headers=HEADERS, params=params)
+    soup = BeautifulSoup(r.content, 'html.parser')
+
+    gdp = soup.find('div', id='releaseInfo').find_all('span')
+    a = []
+    for i in gdp:
+        a.append(i.find('div').text)
+    return f"Последний выпуск: {a[0]}\nФакт.: {a[1]}\nПрогноз: {a[2]}\nПред.: {a[3]}"
+
+
+def consumer_prices():
+    url = 'https://ru.investing.com/economic-calendar/core-cpi-56'
+    r = requests.get(url, headers=HEADERS, params=params)
+    soup = BeautifulSoup(r.content, 'html.parser')
+
+    gdp = soup.find('div', id='releaseInfo').find_all('span')
+    a = []
+    for i in gdp:
+        a.append(i.find('div').text)
+    return f"Последний выпуск: {a[0]}\nФакт.: {a[1]}\nПрогноз: {a[2]}\nПред.: {a[3]}"
+
 
 
 import telebot
 
 # Кнопки
-keyboard = telebot.types.ReplyKeyboardMarkup(True)
-keyboard.row('Добыча 🛢', 'Безработица 🤷‍♂️', 'Ставка 📍', 'ВВП 📊')
+keyboard = telebot.types.ReplyKeyboardMarkup(True, True)
+keyboard.row('Добыча 🛢', 'Безработица 🤷‍♂️', 'Ставка 📍')
+keyboard.row('ВВП 📊', 'Розничные продажи 🧐', 'Индекс потребительских цен')
 bot = telebot.TeleBot('TOKEN')
 
 
@@ -97,6 +114,10 @@ def any_key(message):
         bot.send_message(message.chat.id, rate())
     elif message.text == 'ВВП 📊':
         bot.send_message(message.chat.id, GDP())
+    elif message.text == 'Розничные продажи 🧐':
+        bot.send_message(message.chat.id, retail_sales())
+    elif message.text == 'Индекс потребительских цен':
+        bot.send_message(message.chat.id, consumer_prices())
     else:
         bot.send_message(message.chat.id, 'Выберете команду')
 
