@@ -1,5 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import Articles
 
+
+# в переменной blog все поля модели Articles
 def index(request):
-    return HttpResponse('Hello')
+    blog = Articles.objects.all()
+    return render(request, 'blog/index.html', {'blog': blog, 'test': 'testik'})
