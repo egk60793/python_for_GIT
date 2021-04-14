@@ -1,10 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <title>Все статьи</title>
 </head>
 <body>
-<h1>Все статьи</h1>
+    <h1>Все статьи</h1>
+    <div>
+        {% for i in blog %}
+        <p>{{ i.title }}</p>
+        <p>{{ i.anons }}</p>
+        <p>{{ i.created_at }}</p><hr>
+        {% endfor %}
+    </div>
 </body>
 </html>
