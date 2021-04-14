@@ -1,5 +1,6 @@
 from django.db import models
 
+
 # title = назване
 # anons = анонс к статье, не обязателен
 # content = основной текст статьи
@@ -7,7 +8,6 @@ from django.db import models
 # updated_at = дата редактирования, момент обновления
 # photo = картинки к статьям, хранить в папке фото по дате
 # published = натсраеваемая публикация. Если будет True, то статья опубликуется
-
 class Articles(models.Model):
     title = models.CharField(max_length=100)
     anons = models.CharField(max_length=250, blank=False)
@@ -20,3 +20,9 @@ class Articles(models.Model):
     # возврат title в строковом выражении
     def __str__(self):
         return self.title
+
+    # определить имена и сортировку по дате создания в обратном порядке
+    class Meta:
+        verbose_name = 'Статья'
+        verbose_name_plural = 'Статьи'
+        ordering = ['-created_at']
