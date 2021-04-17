@@ -16,7 +16,7 @@ class Articles(models.Model):
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Дата публикации')
     photo = models.ImageField(upload_to='photos/%Y/%m/%d')
     published = models.BooleanField(default=False, verbose_name='Статус')
-    rubric = models.ForeignKey('Rubric', on_delete=models.PROTECT, null=True)
+    rubric = models.ForeignKey('Rubric', on_delete=models.PROTECT, null=True, verbose_name='Рубрика')
 
     # возврат title в строковом выражении
     def __str__(self):
