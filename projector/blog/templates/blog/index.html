@@ -50,12 +50,12 @@
     {% for i in blog %}
     <div class="card text-center">
         <div class="card-header">
-            Featured
+            {{ i.rubric }}
         </div>
         <div class="card-body">
-            <h5 class="card-title">Special title treatment</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+            <h5 class="card-title">{{ i.title }}</h5>
+            <p class="card-text">{{ i.anons }}</p>
+            <a href="#" class="btn btn-primary">Читать</a>
         </div>
         <div class="card-footer text-muted">
             2 days ago
