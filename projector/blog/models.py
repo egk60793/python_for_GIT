@@ -16,6 +16,7 @@ class Articles(models.Model):
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Дата публикации')
     photo = models.ImageField(upload_to='photos/%Y/%m/%d')
     published = models.BooleanField(default=False, verbose_name='Статус')
+    rubric = models.ForeignKey('Rubric', on_delete=models.PROTECT, null=True)
 
     # возврат title в строковом выражении
     def __str__(self):
@@ -26,3 +27,13 @@ class Articles(models.Model):
         verbose_name = 'Статья'
         verbose_name_plural = 'Статьи'
         ordering = ['-created_at']
+
+# ForeignKey
+# Рубрики статей
+class Rubric(models.Model):
+    title = models.CharField(max_length=100, db_index=True, verbose_name='Рубрики статей')
+
+    class Meta:
+        verbose_name = 'Рубрика'
+        verbose_name_plural = 'Рубрики'
+        ordering = ['title']
