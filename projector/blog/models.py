@@ -28,10 +28,15 @@ class Articles(models.Model):
         verbose_name_plural = 'Статьи'
         ordering = ['-created_at']
 
+
 # ForeignKey
 # Рубрики статей
 class Rubric(models.Model):
     title = models.CharField(max_length=100, db_index=True, verbose_name='Рубрики статей')
+
+    # возврат title в строковом выражении
+    def __str__(self):
+        return self.title
 
     class Meta:
         verbose_name = 'Рубрика'
