@@ -9,16 +9,14 @@
     <link rel="stylesheet" href="{% static 'blog/css/blog.css' %}">
 </head>
 <body>
-<aside>
+<div class="sidenav">
     <h3>Блог статей</h3>
-    <nav>
-        <ul>
-            <a href=""><li>Все статьи</li></a>
-            <a href=""><li>Написать свою статью</li></a>
-            <a href=""><li>Опубликовать</li></a>
-        </ul>
-    </nav>
-</aside>
+    <ul>
+        <li><a href="">Все статьи</a></li>
+        <li><a href="">Написать свою статью</a></li>
+        <li><a href="">Опубликовать</a></li>
+    </ul>
+</div>
 {% block content %}
 {% endblock %}
 </body>
