@@ -1,3 +1,12 @@
-body {
-    background: blue
+aside{
+    float: left;
+    background: #a1dffb;
+    color: black;
+    border-right: 5px solid #f9de59;
+    height: 100vh;
+    width: 15%;
+    padding: 2,5%;
 }
+
+aside ul {list-style: none}
+

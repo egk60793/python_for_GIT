@@ -1,0 +1,26 @@
+{%load static%}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %} {% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'blog/css/blog.css' %}">
+</head>
+<body>
+<aside>
+    <h3>Блог статей</h3>
+    <nav>
+        <ul>
+            <a href=""><li>Все статьи</li></a>
+            <a href=""><li>Написать свою статью</li></a>
+            <a href=""><li>Опубликовать</li></a>
+        </ul>
+    </nav>
+</aside>
+{% block content %}
+{% endblock %}
+</body>
+</html>
+
