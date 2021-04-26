@@ -9,10 +9,13 @@
     background-color: #f9de59; /* Black */
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 20px;
+    border-right: 5px solid #e8a628
 }
 
 .articles {
     text-align: center;
+    margin-left: 550px;
+    margin-right: 450px;
 }
 
 .button {
@@ -20,4 +23,18 @@
     color: black;
     border-radius: 12px;
     font-size: 20px;
+}
+
+.sidenav ul{
+    list-style: none;
+}
+
+.sidenav ul li {
+    color: black;
+    display: block;
+    margin-top: 20px;
+}
+
+h3 {
+    margin-left: 20px;
 }
