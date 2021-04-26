@@ -7,6 +7,10 @@
 {% block content %}
 <div class="articles">
     <h1>Опубликовать статью</h1>
-    <form action=""></form>
+    <form action="{% url 'public' %}" method="post">
+        {% csrf_token %}
+        {{ forms.as_p }}
+        <button class="button" btn-block>Опубликовать</button>
+    </form>
 <div>
 {% endblock %}
