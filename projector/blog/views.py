@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Articles
+from .forms import ArticlesForm
 
 
 # главная
@@ -12,4 +13,8 @@ def index(request):
 
 # Опубликоввать статью
 def public(request):
-    return render(request, 'blog/public.html')
+    if request.method == 'POST':
+        pass
+    else:
+        form = ArticlesForm()
+    return render(request, 'blog/public.html', {'form': form})
