@@ -9,8 +9,8 @@
     <h1>Опубликовать статью</h1>
     <form action="{% url 'public' %}" method="post">
         {% csrf_token %}
-        {{ forms.as_p }}
+        {{ form.as_p }}
         <button class="button" btn-block>Опубликовать</button>
     </form>
-<div>
+</div>
 {% endblock %}
