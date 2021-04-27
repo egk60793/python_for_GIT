@@ -15,6 +15,8 @@ def index(request):
 def public(request):
     if request.method == 'POST':
         form = ArticlesForm(request.POST)
+        if form.is_valid():
+            Articles.objects.create(**form.cleaned_data)
     else:
         form = ArticlesForm()
     return render(request, 'blog/public.html', {'form': form})
