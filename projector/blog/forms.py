@@ -9,4 +9,5 @@ class ArticlesForm(forms.Form):
     content = forms.CharField(label='Контент', widget=forms.Textarea(attrs={'class': 'myClass', 'rows': 5}))
     # photo
     published = forms.BooleanField(label='Опубликовать')
-    rubric = forms.ModelChoiceField(queryset=Rubric.objects.all(), label='Выбрать рубрику')
+    rubric = forms.ModelChoiceField(queryset=Rubric.objects.all(), label='Выбрать рубрику',
+                                    widget=forms.Select(attrs={'class': 'myClass'}))

@@ -14,7 +14,7 @@ def index(request):
 # Опубликоввать статью
 def public(request):
     if request.method == 'POST':
-        pass
+        form = ArticlesForm(request.POST)
     else:
         form = ArticlesForm()
     return render(request, 'blog/public.html', {'form': form})
