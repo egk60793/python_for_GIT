@@ -10,13 +10,13 @@ from django.db import models
 # published = натсраеваемая публикация. Если будет True, то статья опубликуется
 class Articles(models.Model):
     title = models.CharField(max_length=100, verbose_name='Название')
-    anons = models.CharField(max_length=250, blank=False)
-    content = models.TextField(max_length=10000)
+    anons = models.CharField(max_length=250, blank=False, verbose_name='Анонос')
+    content = models.TextField(max_length=10000, verbose_name='Контент')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Дата публикации')
     photo = models.ImageField(upload_to='photos/%Y/%m/%d')
     published = models.BooleanField(default=False, verbose_name='Статус')
-    rubric = models.ForeignKey('Rubric', on_delete=models.PROTECT, null=True, verbose_name='Рубрика')
+    rubric = models.ForeignKey('Rubric', on_delete=models.PROTECT, verbose_name='Рубрика')
 
     # возврат title в строковом выражении
     def __str__(self):
