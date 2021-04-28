@@ -10,8 +10,14 @@
     {% for i in blog %}
         <h4>{{ i.title }}</h4>
         <p>{{ i.anons }}</p>
-        <img src="{{ i.photo.url }}" alt="" height="250">
+        {% if i.photo %}
+            <p><img src="{{i.photo.url}}" height="250"></p>
+        {% else %}
+            <p></p>
+        {% endif %}
         <button class="button">Читать</button><br><hr>
     {% endfor %}
 </div>
 {% endblock %}
+
+
